@@ -16,7 +16,7 @@ module Collision
   # box defaults to calling object.
   #
   # possible options are :up, :down, :left, :right
-  def collide_border?(border, box = self)
+  def collide_border?(box = self, border)
     case border
     when :up
       true if box.y <= 0
