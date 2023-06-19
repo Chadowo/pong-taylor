@@ -7,6 +7,7 @@ require 'src/ai'
 require 'src/ball'
 require 'src/court'
 
+# Core game module, everything happens here
 module Game
   attr_reader :player, :rival, :ball
 
