@@ -1,22 +1,50 @@
 
 require 'collision'
 
+# Bare-bones AI for the game
 class AI
   attr_reader :x, :y, :w, :h, :score
 
+  SPEED = 500
+
   def initialize
     @texture = Texture2D.load('./assets/paddle.png')
-    @rectangle = Rectangle.new(Game::WINDOW_WIDTH - (25 + @texture.width), 
+    @rectangle = Rectangle.new(Game::WINDOW_WIDTH - (25 + @texture.width),
                                300 - (@texture.height / 2),
                                @texture.width,
                                @texture.height)
-    @x, @y = @rectangle.x, @rectangle.y
-    @w, @h = @texture.width, @texture.height
+
+    @x = @rectangle.x
+    @y = @rectangle.y
+    @w = @texture.width
+    @h = @texture.height
 
     @yvel = 0
-    @speed = 500
-
     @score = 0
+  end
+
+  def update(dt)
+    # Rectangle coords are used for rendering
+    @rectangle.x = @x
+    @rectangle.y = @y
+
+    move(dt)
+    track_ball
+  end
+
+  def move(dt)
+    @y += @yvel * dt
+  end
+
+  # Kinda wonky tracking, could use some upgrades
+  def track_ball
+    @yvel = if Game.ball.y + Game.ball.h < @y
+              -SPEED
+            elsif Game.ball.y > @y + @h
+              SPEED
+            else
+              0
+            end
   end
 
   def reset
@@ -24,39 +52,12 @@ class AI
     @score = 0
   end
 
-  def point
+  def increment_score
     @score += 1 unless @score == 10
-  end
-
-  def update(dt)
-    @rectangle.x = @x
-    @rectangle.y = @y
-
-    move(dt)
-    target_ball
-  end
-
-  def move(dt)
-    @y += @yvel * dt
-  end
-
-  # TODO: I feel like this can be done better
-  def target_ball
-    if Game.ball.y + Game.ball.h < @y 
-      @yvel = -@speed
-    elsif Game.ball.y > @y + @h
-      @yvel = @speed
-    else
-      @yvel = 0
-    end
   end
 
   def draw
     @texture.draw(destination: @rectangle)
-    draw_score
-  end
-
-  def draw_score
     draw_text(@score.to_s, 470, 20, 48, WHITE)
   end
 end

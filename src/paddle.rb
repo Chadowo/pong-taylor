@@ -1,6 +1,7 @@
 
 require 'collision'
 
+# Controllable paddle
 class Paddle
   attr_reader :x, :y, :w, :h, :score
 
@@ -8,22 +9,21 @@ class Paddle
 
   def initialize
     @texture = Texture2D.load('./assets/paddle.png')
-    @rectangle = Rectangle.new(25, 300 - @texture.height / 2, @texture.width, @texture.height)
-    @x, @y = @rectangle.x, @rectangle.y
-    @w, @h = @texture.width, @texture.height
-    @score = 0
-  end
+    @rectangle = Rectangle.new(25,
+                               300 - @texture.height / 2,
+                               @texture.width,
+                               @texture.height)
 
-  def reset
-    @y = 300 - @texture.height / 2
-    @score = 0
-  end
+    @x = @rectangle.x
+    @y = @rectangle.y
+    @w = @texture.width
+    @h = @texture.height
 
-  def point
-    @score += 1 unless @score == 10
+    @score = 0
   end
 
   def update(dt)
+    # Rectangle coords are used for rendering
     @rectangle.x = @x
     @rectangle.y = @y
 
@@ -38,12 +38,17 @@ class Paddle
     end
   end
 
-  def draw
-    @texture.draw(destination: @rectangle)
-    draw_score
+  def reset
+    @y = 300 - @texture.height / 2
+    @score = 0
   end
 
-  def draw_score
+  def increment_score
+    @score += 1 unless @score == 10
+  end
+
+  def draw
+    @texture.draw(destination: @rectangle)
     draw_text(@score.to_s, 300, 20, 48, WHITE)
   end
 end
