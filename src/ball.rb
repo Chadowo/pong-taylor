@@ -87,7 +87,7 @@ class Ball
     collision_position = middle_ball - middle_rival
 
     @xvel = -SPEED
-    @yvel = collision_position * 6 
+    @yvel = collision_position * 6
   end
 
   def reset

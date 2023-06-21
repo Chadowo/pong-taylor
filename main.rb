@@ -57,7 +57,7 @@ module Game
     @rival.update(dt)
     @ball.update(dt)
 
-    @state = :gamover if @player.score == 10 || @rival.score == 10
+    @state = :gameover if @player.score == 10 || @rival.score == 10
   end
 
   def gameover
