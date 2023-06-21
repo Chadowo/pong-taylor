@@ -11,13 +11,17 @@ You can get the latest release from [here](https://github.com/Chadowo/pong-taylo
 
 # Development
 
-First clone the source code
+First clone the source code:
 `git clone https://github.com/Chadowo/pong-taylor.git`
 
 and [download](https://taylor.oequacki.com/#downloads) Taylor for your
 platform, once that's done you should move the taylor executable to the
 directory where the source code is. With that it should be as easy as
 running the executable!
+
+This project uses [Rubocop](https://github.com/rubocop/rubocop) for
+linting, you can install it with the following command:
+`bundle install`
 
 # Assets
 
@@ -29,4 +33,3 @@ see [CREDITS.txt](assets/CREDITS.txt)
 # License
 
 [MIT](LICENSE)
-
