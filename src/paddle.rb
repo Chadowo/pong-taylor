@@ -1,4 +1,3 @@
-
 require 'collision'
 
 # Controllable paddle
@@ -6,6 +5,8 @@ class Paddle
   attr_reader :x, :y, :w, :h, :score
 
   include Collision
+
+  SPEED = 400
 
   def initialize
     @texture = Texture2D.load('./assets/paddle.png')
@@ -32,9 +33,9 @@ class Paddle
 
   def move(dt)
     if key_down?(KEY_S) && !collide_border?(:down)
-      @y += 400 * dt
+      @y += SPEED * dt
     elsif key_down?(KEY_W) && !collide_border?(:up)
-      @y -= 400 * dt
+      @y -= SPEED * dt
     end
   end
 
