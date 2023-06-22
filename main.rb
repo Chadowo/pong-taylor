@@ -2,7 +2,7 @@
 $: << './vendor'
 $: << './src'
 
-require 'state'
+require 'state_manager'
 
 require 'src/states/play'
 require 'src/states/menu'
