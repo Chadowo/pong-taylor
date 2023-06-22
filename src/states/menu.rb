@@ -1,4 +1,4 @@
-require 'state'
+require 'state_manager'
 
 require 'src/court'
 require 'src/states/play'
