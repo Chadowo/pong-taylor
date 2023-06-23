@@ -9,11 +9,15 @@ require 'src/states/menu'
 
 # Core game module, everything happens here
 module Game
+  attr_accessor :running
+
   extend self
 
   WINDOW_WIDTH = 800
   WINDOW_HEIGHT = 600
   VERSION = '1.1.0'.freeze
+
+  @running = true
 
   def initialize
     init_window(WINDOW_WIDTH, WINDOW_HEIGHT, 'Pong')
@@ -40,10 +44,13 @@ module Game
 
   # Loop our game until we should close the window
   def loop
-    update(get_frame_time) until window_should_close?
+    # Ends the game if running is false or if the window
+    # should close (user presses the X or hits ESC)
+    update(get_frame_time) while @running && !window_should_close?
   end
 
   # Needed for closing resources used in taylor
+  # NOTE: Don't call this to end the game, instead set Game#running to false
   def finalize
     close_window
     close_audio_device
