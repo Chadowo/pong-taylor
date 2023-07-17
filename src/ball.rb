@@ -49,8 +49,8 @@ class Ball
 
   def collisions
     collide_borders
-    collide_player
-    collide_ai
+    collide_left_pad
+    collide_right_pad
   end
 
   def collide_borders
@@ -65,7 +65,7 @@ class Ball
     end
   end
 
-  def collide_player
+  def collide_left_pad
     return false unless collide?(@left_paddle)
 
     # Depending on the distance between the two
@@ -82,7 +82,7 @@ class Ball
     @yvel = collision_position * 6
   end
 
-  def collide_ai
+  def collide_right_pad
     return false unless collide?(@right_paddle)
 
     middle_ball = @y + @h / 2
@@ -93,15 +93,14 @@ class Ball
     @yvel = collision_position * 6
   end
 
-  # Reset the ball to its initial position, serving
-  # to the player that lost a point
+  # Reset the ball to its initial position
   def reset
+    # We give the ball to the side that lost a point
+    @xvel = collide_border?(:right) ? SPEED : -SPEED
+    @yvel = 0
+
     @x = 400 - @texture.width / 2
     @y = 300 - @texture.height / 2
-
-    # We give the ball to the side that lost a point
-    @xvel = collide_border?(:left) ? -SPEED : SPEED
-    @yvel = 0
   end
 
   def draw
