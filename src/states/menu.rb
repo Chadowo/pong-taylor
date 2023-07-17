@@ -1,12 +1,13 @@
 require 'state_manager'
 
 require 'src/court'
+
 require 'src/states/play'
 
 # Menu state
 class Menu < StateManager::State
   # A button has a label and an action, the action
-  # being a lambda
+  # being a lambda/proc
   Button = Struct.new(:label, :action)
 
   def initialize
@@ -18,9 +19,9 @@ class Menu < StateManager::State
                 Button.new('Exit', -> { Game.running = false })]
     @current_option = 0
 
-    # The y of the pointer that show the user their choice.
-    # TODO: I reckon there should be a better way than hard-coding the coord
-    @pointer_y = 300
+    # The y of the cube that shows the player's choice
+    # TODO: Harcoded coord
+    @cube_y = 300
   end
 
   def update(dt)
@@ -28,10 +29,10 @@ class Menu < StateManager::State
     # from top to bottom the 0 index is the topmost button
     if key_pressed?(KEY_UP) && @current_option > 0
       @current_option -= 1
-      @pointer_y -= 58
+      @cube_y -= 58
     elsif key_pressed?(KEY_DOWN) && @current_option < (@buttons.length - 1)
       @current_option += 1
-      @pointer_y += 58
+      @cube_y += 58
     end
 
     return nil unless key_pressed?(KEY_ENTER)
@@ -40,15 +41,17 @@ class Menu < StateManager::State
   end
 
   def draw
-    # BG
+    # Bg
     @court.draw
+    Rectangle.new(0, 0, Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT)
+             .draw(colour: Colour.new(0, 0, 0, 70))
 
     # Title
     draw_text('Pong', 30, 150, 64, WHITE)
 
     draw_buttons
 
-    Rectangle.new(5, @pointer_y, 10, 30).draw(colour: WHITE)
+    Rectangle.new(5, @cube_y, 10, 30).draw(colour: WHITE)
 
     # Version number
     draw_text("V#{Game::VERSION}", 750, 580, 20, WHITE)
