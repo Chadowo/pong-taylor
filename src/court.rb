@@ -1,4 +1,3 @@
-
 # Background court
 class Court
   def initialize
