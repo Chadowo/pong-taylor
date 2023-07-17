@@ -5,9 +5,14 @@ require 'src/ai'
 require 'src/paddle'
 require 'src/court'
 
+require 'src/states/pause.rb'
+require 'src/states/gameover.rb'
+
 # Main play state
+# Superstate of Pause and Gameover
 class Play < StateManager::State
   attr_reader :player, :rival, :ball
+  attr_writer :substate
 
   def on_enter
     @player.reset
@@ -16,8 +21,6 @@ class Play < StateManager::State
   end
 
   def initialize
-    super()
-
     @player = Paddle.new
     @rival = AI.new
 
@@ -26,20 +29,25 @@ class Play < StateManager::State
 
     @court = Court.new
 
+    @substates = {pause: Pause.new(self),
+                  gameover: GameOver.new(self)}
     # Determines current game flow of action
     # one of :playing,:gameover or :pause
-    # NOTE: Would it be better to use a State instead?
     @substate = :playing
   end
 
   def update(dt)
+    handle_substates(dt)
+  end
+
+  def handle_substates(dt)
     case @substate
     when :playing
       playing_update(dt)
     when :pause
-      pause_update
+      @substates[:pause].update(dt)
     when :gameover
-      gameover_update
+      @substates[:gameover].update(dt)
     end
   end
 
@@ -53,55 +61,19 @@ class Play < StateManager::State
     @substate = :gameover if @player.score == 10 || @rival.score == 10
   end
 
-  def pause_update
-    return nil unless key_pressed?(KEY_ENTER)
-
-    @substate = :playing
-  end
-
-  def gameover_update
-    return nil unless key_pressed?(KEY_R)
-
-    @player.reset
-    @rival.reset
-    @ball.reset
-
-    @substate = :playing
-  end
-
   def draw
     @court.draw
     @player.draw
     @rival.draw
     @ball.draw
 
+    # Since we don't wanna stop drawing the play state when drawing the other
+    # states, we can just do the case here
     case @substate
     when :pause
-      pause_draw
+      @substates[:pause].draw
     when :gameover
       gameover_draw
     end
-  end
-
-  def pause_draw
-    # Transparent rectangle covering the game window to darken
-    # the screen a little
-    Rectangle.new(0, 0, Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT)
-             .draw(colour: Colour.new(0, 0, 0, 100))
-
-    draw_text('-- PAUSE --', 255, 150, 48, WHITE)
-  end
-
-  def gameover_draw
-    outcome = @player.score == 10 ? 'You win!' : 'You lose!'
-
-    # Top text
-    draw_text('The game has ended!', 200, 200, 38, WHITE)
-
-    # Medium text
-    draw_text(outcome, 310, 250, 38, WHITE)
-
-    # Bottom text
-    draw_text('Press R to restart the game', 130, 550, 38, WHITE)
   end
 end
