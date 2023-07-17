@@ -16,7 +16,9 @@ module StateManager
     @current_state.draw
   end
 
-  # Base state skeleton class
+  # TODO: Superstate and Substate classes
+
+  # Basic state skeleton
   class State
   	# Called when entering the state
     def on_enter; end
