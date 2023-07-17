@@ -1,6 +1,6 @@
 {
   "name": "Pong",
-  "version": "v1.0.0",
+  "version": "v1.1.0",
   "input": "main.rb",
   "export_directory": "./exports",
   "export_targets": [
