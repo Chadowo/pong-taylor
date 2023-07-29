@@ -1,11 +1,11 @@
-# Add the path ./vendor so we can easily require third party libraries.
-$: << './vendor'
+$: << './lib'
 $: << './src'
 
 require 'state_manager'
 
 require 'src/states/play'
 require 'src/states/menu'
+require 'src/version'
 
 # Core game module, everything happens here
 module Game
@@ -15,7 +15,6 @@ module Game
 
   WINDOW_WIDTH = 800
   WINDOW_HEIGHT = 600
-  VERSION = '1.1.0'.freeze
 
   @running = true
 
