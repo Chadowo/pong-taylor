@@ -5,11 +5,11 @@ It features an AI that's, not so good being honest but its fun even so.
 The motivation behind this project was to get my feet wet with taylor
 and ruby for game development.
 
-# Play it
+## Play it
 
 You can get the latest release from [here](https://github.com/Chadowo/pong-taylor/releases)
 
-# Development
+## Development
 
 First clone the source code:
 `git clone https://github.com/Chadowo/pong-taylor.git`
@@ -23,13 +23,18 @@ This project uses [Rubocop](https://github.com/rubocop/rubocop) for
 linting, you can install it with the following command:
 `bundle install`
 
-# Assets
+## Code Structure
+
+The main source code is under `src/`, later on `lib/` we have standalone files
+that have specific and reusable functionality.
+
+## Assets
 
 Credits goes to [domsson](https://opengameart.org/users/domsson) on
 opengameart for the pong graphics.
 
 see [CREDITS.txt](assets/CREDITS.txt)
 
-# License
+## License
 
 [MIT](LICENSE)
