@@ -1,7 +1,7 @@
 {
   "name": "Pong",
   "version": "v1.1.0",
-  "input": "main.rb",
+  "input": "src/main.rb",
   "export_directory": "./exports",
   "export_targets": [
     "linux",
@@ -12,7 +12,7 @@
   "load_paths": [
     "./",
     "./src",
-    "./vendor"
+    "./lib"
   ],
   "copy_paths": [
     "./assets"
