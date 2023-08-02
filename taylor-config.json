@@ -10,7 +10,6 @@
     "osx/intel"
   ],
   "load_paths": [
-    "./",
     "./src",
     "./lib"
   ],
