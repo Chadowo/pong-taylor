@@ -17,11 +17,10 @@ First clone the source code:
 and [download](https://taylor.oequacki.com/#downloads) Taylor for your
 platform, once that's done you should move the taylor executable to the
 directory where the source code is. With that it should be as easy as
-running the executable!
+running the taylor (or `$ rake run`)!
 
-This project uses [Rubocop](https://github.com/rubocop/rubocop) for
-linting, you can install it with the following command:
-`bundle install`
+To export the game, run `$ rake export`, make sure you have [Docker](https://www.docker.com/)
+installed and working.
 
 ## Code Structure
 
