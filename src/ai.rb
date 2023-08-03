@@ -1,4 +1,3 @@
-
 require 'collision'
 
 # Bare-bones AI for the game
@@ -29,7 +28,6 @@ class AI
     @rectangle.y = @y
 
     move(dt)
-    track_ball
   end
 
   def move(dt)
@@ -37,10 +35,10 @@ class AI
   end
 
   # Kinda wonky tracking, could use some upgrades
-  def track_ball
-    @yvel = if Game.ball.y + Game.ball.h < @y
+  def track_ball(ball)
+    @yvel = if ball.y + ball.h < @y
               -SPEED
-            elsif Game.ball.y > @y + @h
+            elsif ball.y > @y + @h
               SPEED
             else
               0

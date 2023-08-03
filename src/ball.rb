@@ -1,4 +1,3 @@
-
 require 'collision'
 
 # Collidable ball
@@ -25,6 +24,12 @@ class Ball
     @yvel = 0
   end
 
+  # Sets the two players to play with
+  def set_sides(left_paddle, right_paddle)
+    @left_paddle = left_paddle
+    @right_paddle = right_paddle
+  end
+
   def update(dt)
     @rectangle.x = @x
     @rectangle.y = @y
@@ -44,37 +49,24 @@ class Ball
 
   def collisions
     collide_borders
-    collide_player
-    collide_ai
+    collide_left_pad
+    collide_right_pad
   end
 
   def collide_borders
     if collide_border?(:up) || collide_border?(:down)
-      # Invert y velocity
       @yvel = -@yvel
     elsif collide_border?(:left)
-      Game.rival.increment_score
+      @right_paddle.increment_score
       reset
     elsif collide_border?(:right)
-      Game.player.increment_score
+      @left_paddle.increment_score
       reset
     end
   end
 
-  def collide_player
-    return false unless collide?(Game.player)
-
-    @xvel = SPEED
-
-    middle_ball = @y + @h / 2
-    middle_player = Game.player.y + Game.player.h / 2
-    collision_position = middle_ball - middle_player
-
-    @yvel = collision_position * 6
-  end
-
-  def collide_ai
-    return false unless collide?(Game.rival)
+  def collide_left_pad
+    return false unless collide?(@left_paddle)
 
     # Depending on the distance between the two
     # middle points we modify the y velocity.
@@ -83,16 +75,28 @@ class Ball
     # the paddle
 
     middle_ball = @y + @h / 2
-    middle_rival = Game.rival.y + Game.rival.h / 2
+    middle_player = @left_paddle.y + @left_paddle.h / 2
+    collision_position = middle_ball - middle_player
+
+    @xvel = SPEED
+    @yvel = collision_position * 6
+  end
+
+  def collide_right_pad
+    return false unless collide?(@right_paddle)
+
+    middle_ball = @y + @h / 2
+    middle_rival = @right_paddle.y + @right_paddle.h / 2
     collision_position = middle_ball - middle_rival
 
     @xvel = -SPEED
     @yvel = collision_position * 6
   end
 
+  # Reset the ball to its initial position
   def reset
     # We give the ball to the side that lost a point
-    @xvel = collide_border?(:left) ? -SPEED : SPEED
+    @xvel = collide_border?(:right) ? SPEED : -SPEED
     @yvel = 0
 
     @x = 400 - @texture.width / 2
