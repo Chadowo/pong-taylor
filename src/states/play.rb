@@ -73,7 +73,7 @@ class Play < StateManager::State
     when :pause
       @substates[:pause].draw
     when :gameover
-      gameover_draw
+      @substates[:gameover].draw
     end
   end
 end
