@@ -1,8 +1,8 @@
 require 'state_manager'
 
-require 'src/court'
+require 'court'
 
-require 'src/states/play'
+require 'states/play'
 
 # Menu state
 class Menu < StateManager::State

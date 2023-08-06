@@ -3,9 +3,9 @@ $: << './src'
 
 require 'state_manager'
 
-require 'src/states/play'
-require 'src/states/menu'
-require 'src/version'
+require 'states/play'
+require 'states/menu'
+require 'version'
 
 # Core game module, everything happens here
 module Game

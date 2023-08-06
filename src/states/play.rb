@@ -1,12 +1,12 @@
 require 'state_manager'
 
-require 'src/ball'
-require 'src/ai'
-require 'src/paddle'
-require 'src/court'
+require 'ball'
+require 'ai'
+require 'paddle'
+require 'court'
 
-require 'src/states/pause.rb'
-require 'src/states/gameover.rb'
+require 'states/pause.rb'
+require 'states/gameover.rb'
 
 # Main play state
 # Superstate of Pause and Gameover
