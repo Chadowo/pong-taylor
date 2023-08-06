@@ -16,6 +16,10 @@ end
 
 desc 'Run the game'
 task :run do
+  unless File.exist?('taylor') || File.exist?('taylor.exe')
+    raise RuntimeError, 'taylor executable not found!'
+  end
+
   sh './taylor'
 end
 
