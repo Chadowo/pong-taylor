@@ -23,7 +23,7 @@ task :run do
   sh './taylor'
 end
 
-desc 'Build the game for realising'
+desc 'Build the game for release'
 task :build do
   puts 'Checking for Docker...'
   unless has_docker?
