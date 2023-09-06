@@ -2,3 +2,11 @@
 # Unavailable on mruby
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Metrics/MethodLength:
+  Enabled: true
+  Max: 70
+
+Metrics/ModuleLength:
+  Enabled: true
+  Max: 100
