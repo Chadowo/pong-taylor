@@ -1,3 +1,5 @@
+AllCops:
+  NewCops: enable
 
 # Unavailable on mruby
 Style/FrozenStringLiteralComment:
