@@ -1,6 +1,5 @@
 
 module Collision
-
   # AABB collision detection.
   # box1 defaults to calling object.
   def collide?(box1 = self, box2)
