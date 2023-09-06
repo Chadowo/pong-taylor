@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-Nothing here yet!
+### Added
+
+- Now in the pause screen you can choose to either resume the game or go to the main menu
 
 ## 1.1.0 - 2023-08-05
 
