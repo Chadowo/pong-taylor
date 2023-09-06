@@ -21,7 +21,7 @@ class Menu < StateManager::State
 
     # The y of the cube that shows the player's choice
     # TODO: Harcoded coord
-    @cube_y = 300
+    @arrow_y = 300
   end
 
   def update(dt)
@@ -29,10 +29,10 @@ class Menu < StateManager::State
     # from top to bottom the 0 index is the topmost button
     if key_pressed?(KEY_UP) && @current_option > 0
       @current_option -= 1
-      @cube_y -= 58
+      @arrow_y -= 58
     elsif key_pressed?(KEY_DOWN) && @current_option < (@buttons.length - 1)
       @current_option += 1
-      @cube_y += 58
+      @arrow_y += 58
     end
 
     return nil unless key_pressed?(KEY_ENTER)
@@ -51,7 +51,7 @@ class Menu < StateManager::State
 
     draw_buttons
 
-    Rectangle.new(5, @cube_y, 10, 30).draw(colour: WHITE)
+    Rectangle.new(5, @arrow_y, 10, 30).draw(colour: WHITE)
 
     # Version number
     draw_text("V#{Game::VERSION}", 750, 580, 20, WHITE)
