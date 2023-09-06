@@ -41,7 +41,7 @@ module Game
     end
   end
 
-  # Loop our game until we should close the window
+  # Loop our game until it ends
   def loop
     # Ends the game if running is false or if the window
     # should close (user presses the X or hits ESC)
