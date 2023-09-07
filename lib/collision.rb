@@ -9,6 +9,8 @@ module Collision
        box1.y + box1.h > box2.y
     then
       true
+    else
+      false
     end
   end
 
