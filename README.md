@@ -7,6 +7,10 @@ It features an AI that's, not so good being honest but its fun even so.
 The motivation behind this project was to get my feet wet with taylor
 and ruby for game development.
 
+<p align="center">
+  <img src="docs/media/in_game_screenshot.png" alt="In game screenshot"/>
+</p>
+
 ## Play it
 
 You can get the latest release from [here](https://github.com/Chadowo/pong-taylor/releases)
