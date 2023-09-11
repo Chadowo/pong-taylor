@@ -13,29 +13,29 @@ You can get the latest release from [here](https://github.com/Chadowo/pong-taylo
 
 ## Development
 
-First clone the source code:
+First clone the project:
+
 `git clone https://github.com/Chadowo/pong-taylor.git`
 
-and [download](https://taylor.oequacki.com/#downloads) Taylor for your
-platform, once that's done you should move the taylor executable to the
-directory where the source code is. With that it should be as easy as
-running the taylor (or `$ rake run`)!
+and [download Taylor for your platform](https://taylor.oequacki.com/#downloads) (you can grab it from the [releases on github](https://github.com/HellRok/Taylor/releases))
+too. Once that's done you should move the taylor executable to the directory where you cloned the project, 
+With that it should be as easy as running the taylor (or `rake run` if you have rake)!
 
-To export the game, run `$ rake export`, make sure you have [Docker](https://www.docker.com/)
+To export the game, run `./taylor export` (or `rake export`), make sure you have [Docker](https://www.docker.com/)
 installed and working.
 
 ## Code Structure
 
 The main source code is under `src/`, later on `lib/` we have standalone files
-that have specific and reusable functionality.
+that have specific and reusable functionality. I should probably organize this better.
 
 ## Assets
 
 Credits goes to [domsson](https://opengameart.org/users/domsson) on
 opengameart for the pong graphics.
 
-see [CREDITS.txt](assets/CREDITS.txt)
+see [CREDITS.txt](assets/CREDITS.txt).
 
 ## License
 
-[MIT](LICENSE)
+This project is licensed under the [MIT](LICENSE) license.
