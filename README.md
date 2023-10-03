@@ -20,7 +20,9 @@ You can get the latest release from [here](https://github.com/Chadowo/pong-taylo
 
 First clone the project:
 
-`git clone https://github.com/Chadowo/pong-taylor.git`
+```console
+git clone https://github.com/Chadowo/pong-taylor.git
+```
 
 and [download Taylor for your platform](https://taylor.oequacki.com/#downloads) (you can grab it from the [releases on github](https://github.com/HellRok/Taylor/releases))
 too. Once that's done you should move the taylor executable to the directory where you cloned the project, 
