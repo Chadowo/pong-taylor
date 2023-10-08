@@ -1,7 +1,7 @@
 # Pong In Taylor
 
-![GitHub release (with filter)](https://img.shields.io/github/v/release/chadowo/pong-taylor)
-![GitHub](https://img.shields.io/github/license/chadowo/pong-taylor)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/chadowo/pong-taylor?style=flat-square)
+![GitHub](https://img.shields.io/github/license/chadowo/pong-taylor?style=flat-square)
 
 Pong made in the [Taylor game framework](https://github.com/HellRok/Taylor).
 It features a really simple AI to play with. The motivation behind this
