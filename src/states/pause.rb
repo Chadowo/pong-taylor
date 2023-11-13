@@ -9,8 +9,8 @@ class Pause < StateManager::State
     @arrow_y = 250
   end
 
-  def update(_dt)
-    if key_pressed?(KEY_UP) && @current_option > 0
+  def update(dt)
+    if key_pressed?(KEY_UP) && @current_option.positive?
       @current_option -= 1
       @arrow_y = 250
     elsif key_pressed?(KEY_DOWN) && @current_option < (1)
