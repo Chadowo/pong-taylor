@@ -1,7 +1,6 @@
+require 'entities/court'
+
 require 'state_manager'
-
-require 'court'
-
 require 'states/play'
 
 # Menu state
@@ -27,7 +26,7 @@ class Menu < StateManager::State
   def update(dt)
     # This handles our game's menu control, since our buttons are drawed
     # from top to bottom the 0 index is the topmost button
-    if key_pressed?(KEY_UP) && @current_option > 0
+    if key_pressed?(KEY_UP) && @current_option.positive?
       @current_option -= 1
       @arrow_y -= 58
     elsif key_pressed?(KEY_DOWN) && @current_option < (@buttons.length - 1)

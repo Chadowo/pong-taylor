@@ -1,4 +1,3 @@
-
 module Collision
   # AABB collision detection.
   # box1 defaults to calling object.

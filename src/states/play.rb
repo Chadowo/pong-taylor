@@ -1,12 +1,11 @@
+require 'entities/ball'
+require 'entities/ai'
+require 'entities/paddle'
+require 'entities/court'
+
 require 'state_manager'
-
-require 'ball'
-require 'ai'
-require 'paddle'
-require 'court'
-
-require 'states/pause.rb'
-require 'states/gameover.rb'
+require 'states/pause'
+require 'states/gameover'
 
 # Main play state
 # Superstate of Pause and Gameover

@@ -6,6 +6,7 @@ class Paddle
 
   include Collision
 
+  MAXIMUM_SCORE = 10
   SPEED = 400
 
   def initialize
@@ -45,7 +46,7 @@ class Paddle
   end
 
   def increment_score
-    @score += 1 unless @score == 10
+    @score += 1 unless @score == MAXIMUM_SCORE
   end
 
   def draw

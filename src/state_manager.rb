@@ -1,4 +1,3 @@
-
 # Finite State Machine (FSM) implementation
 module StateManager
   @current_state = nil

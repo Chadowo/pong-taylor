@@ -10,8 +10,7 @@
     "osx/intel"
   ],
   "load_paths": [
-    "./src",
-    "./lib"
+    "./src"
   ],
   "copy_paths": [
     "./assets"

@@ -1,10 +1,9 @@
-$: << './lib'
-$: << './src'
+$: << 'src'
 
 require 'state_manager'
-
 require 'states/play'
 require 'states/menu'
+
 require 'version'
 
 # Core game module, everything happens here
