@@ -28,8 +28,8 @@ class Play < StateManager::State
 
     @court = Court.new
 
-    @substates = {pause: Pause.new(self),
-                  gameover: GameOver.new(self)}
+    @substates = { pause: Pause.new(self),
+                   gameover: GameOver.new(self) }
     # Determines current game flow of action
     # one of :playing,:gameover or :pause
     @substate = :playing
