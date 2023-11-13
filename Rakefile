@@ -7,9 +7,7 @@ def has_docker?
   case RUBY_PLATFORM
   when /windows/
     system('where docker')
-  when /darwin/
-    system('which docker')
-  when /linux/
+  when /darwin/, /linux/
     system('which docker')
   end
 end
@@ -17,7 +15,7 @@ end
 desc 'Run the game'
 task :run do
   unless File.exist?('taylor') || File.exist?('taylor.exe')
-    raise RuntimeError, 'taylor executable not found!'
+    raise 'taylor executable not found!'
   end
 
   sh './taylor'
@@ -37,7 +35,7 @@ task :build do
   puts 'Generating exports...'
 
   Dir.mkdir('exports') unless Dir.exist?('exports')
-  sh './taylor export'  
+  sh './taylor export'
 
   puts 'Done!'
 end
