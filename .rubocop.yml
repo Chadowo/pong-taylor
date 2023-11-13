@@ -12,3 +12,6 @@ Metrics/MethodLength:
 Metrics/ModuleLength:
   Enabled: true
   Max: 100
+
+Naming/MethodParameterName:
+  Enabled: false
