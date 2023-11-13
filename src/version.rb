@@ -1,3 +1,7 @@
 module Game
-  VERSION = '1.1.0'.freeze
+  MAJOR_VERSION = 1
+  MINOR_VERSION = 1
+  PATCH_VERSION = 0
+
+  VERSION = "#{MAJOR_VERSION}.#{MINOR_VERSION}.#{PATCH_VERSION}".freeze
 end
