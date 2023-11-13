@@ -3,7 +3,7 @@ require 'fileutils'
 
 task default: :run
 
-def has_docker?
+def docker?
   case RUBY_PLATFORM
   when /windows/
     system('where docker')
@@ -24,7 +24,7 @@ end
 desc 'Build the game for release'
 task :build do
   puts 'Checking for Docker...'
-  unless has_docker?
+  unless docker?
     puts 'Docker not found! make sure it is installed properly and on PATH'
     puts 'see: https://www.docker.com/'
     puts
