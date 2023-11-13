@@ -4,8 +4,9 @@
 ![GitHub](https://img.shields.io/github/license/chadowo/pong-taylor?style=flat-square)
 
 Pong made in the [Taylor game framework](https://github.com/HellRok/Taylor).
-It features a really simple AI to play with. The motivation behind this
-project was to get my feet wet with taylor and ruby for game development.
+It features a really simple AI to play with and the classic Pong mechanics.
+The motivation behind this project was to get my feet wet with taylor 
+and ruby for game development.
 
 <p align="center">
   <img src="docs/media/in_game_screenshot.png" alt="In game screenshot"/>
@@ -13,7 +14,7 @@ project was to get my feet wet with taylor and ruby for game development.
 
 ## Play it
 
-You can get the latest release from [here](https://github.com/Chadowo/pong-taylor/releases)
+You can get the latest release from [here](https://github.com/Chadowo/pong-taylor/releases).
 
 ## Development
 
@@ -23,17 +24,12 @@ First clone the project:
 git clone https://github.com/Chadowo/pong-taylor.git
 ```
 
-and [download Taylor for your platform](https://taylor.oequacki.com/#downloads) (you can grab it from the [releases on github](https://github.com/HellRok/Taylor/releases) too) 
+and [download Taylor for your platform](https://taylor.oequacki.com/#downloads) (you can grab it from the [releases on github](https://github.com/HellRok/Taylor/releases) too).
 Once that's done you should move the taylor executable to the directory where you cloned the project,
 then it should be as easy as running the taylor executable to play the game.
 
 To export the game, run `./taylor export` (or `rake export`), make sure you have [Docker](https://www.docker.com/)
 installed and working.
-
-## Code Structure
-
-The main source code is under `src/`, later on `lib/` we have standalone files
-that have specific and reusable functionality. I should probably organize this better.
 
 ## Assets
 
