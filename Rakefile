@@ -1,4 +1,3 @@
-
 require 'fileutils'
 
 task default: :run
