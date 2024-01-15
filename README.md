@@ -14,7 +14,10 @@ and ruby for game development.
 
 ## Play it
 
-You can get the latest release from [here](https://github.com/Chadowo/pong-taylor/releases).
+<a href="https://github.com/Chadowo/pong-taylor/releases">
+<img src="https://github.com/Chadowo/pong-taylor/assets/83732118/18ecc235-508e-44f1-9ed7-7210cd2eb6d7"
+alt="Get it on GitHub" align="center" height="80" />
+</a>
 
 ## Development
 
