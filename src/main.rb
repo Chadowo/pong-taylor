@@ -17,14 +17,14 @@ module Game
 
   @running = true
 
-  def initialize
-    init_window(WINDOW_WIDTH, WINDOW_HEIGHT, 'Pong')
-    set_window_icon(load_image('assets/icon.png'))
+  def init
+    Window.open(width: WINDOW_WIDTH, height: WINDOW_HEIGHT, title: 'Pong')
+    Window.icon = Image.new('assets/icon.png')
 
-    init_audio_device
+    Audio.open
 
     # Get the current monitor frame rate and set our target framerate to match
-    set_target_fps(get_monitor_refresh_rate(get_current_monitor))
+    Window.target_frame_rate = Monitor.current.refresh_rate
 
     StateManager.set_state(Menu.new)
   end
@@ -34,8 +34,8 @@ module Game
     StateManager.update(dt)
 
     # Rendering logic
-    drawing do
-      clear
+    Window.draw do
+      Window.clear
       StateManager.draw
     end
   end
@@ -44,17 +44,17 @@ module Game
   def loop
     # Ends the game if running is false or if the window
     # should close (user presses the X or hits ESC)
-    update(get_frame_time) while @running && !window_should_close?
+    update(Window.frame_time) while @running && !Window.close?
   end
 
   # Needed for closing resources used in taylor
   # NOTE: Don't call this to end the game, instead set Game#running to false
   def finalize
-    close_window
-    close_audio_device
+    Window.close
+    Audio.close
   end
 end
 
-Game.initialize
+Game.init
 Game.loop
 Game.finalize
