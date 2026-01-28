@@ -2,6 +2,8 @@
 module StateManager
   @current_state = nil
 
+  extend self
+
   def set_state(other_state)
     @current_state = other_state if other_state.is_a? State
     @current_state.on_enter
@@ -28,6 +30,4 @@ module StateManager
 
     def draw; end
   end
-
-  module_function :set_state, :update, :draw
 end
