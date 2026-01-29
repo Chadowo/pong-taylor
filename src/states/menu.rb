@@ -23,7 +23,7 @@ class Menu < StateManager::State
     @arrow_y = 300
   end
 
-  def update(dt)
+  def update(_dt)
     # This handles our game's menu control, since our buttons are drawed
     # from top to bottom the 0 index is the topmost button
     if Key.pressed?(Key::UP) && @current_option.positive?

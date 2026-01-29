@@ -21,7 +21,7 @@ module StateManager
 
   # Basic state skeleton
   class State
-  	# Called when entering the state
+    # Called when entering the state
     def on_enter; end
 
     def initialize; end
