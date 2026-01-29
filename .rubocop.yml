@@ -1,8 +1,12 @@
 AllCops:
   NewCops: enable
 
-# Unavailable on mruby
+# Unavailable on MRuby
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# module_function is no-op on MRuby
+Style/ModuleFunction:
   Enabled: false
 
 Metrics/MethodLength:
