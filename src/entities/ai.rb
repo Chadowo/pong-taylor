@@ -7,11 +7,11 @@ class AI
   SPEED = 500
 
   def initialize
-    @texture = Texture2D.load('./assets/paddle.png')
-    @rectangle = Rectangle.new(Game::WINDOW_WIDTH - (25 + @texture.width),
-                               300 - (@texture.height / 2),
-                               @texture.width,
-                               @texture.height)
+    @texture = Texture2D.new('./assets/paddle.png')
+    @rectangle = Rectangle.new(x: Game::WINDOW_WIDTH - (25 + @texture.width),
+                               y: 300 - (@texture.height / 2),
+                               width: @texture.width,
+                               height: @texture.height)
 
     @x = @rectangle.x
     @y = @rectangle.y
@@ -56,6 +56,6 @@ class AI
 
   def draw
     @texture.draw(destination: @rectangle)
-    draw_text(@score.to_s, 470, 20, 48, WHITE)
+    Font.default.draw(@score.to_s, size: 48, position: Vector2[470, 20], colour: Colour::WHITE)
   end
 end
