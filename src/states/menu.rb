@@ -44,16 +44,16 @@ class Menu < StateManager::State
   def draw
     # Bg
     @court.draw
-    #Rectangle.new(x: 0, y: 0, width: Game::WINDOW_WIDTH, height: Game::WINDOW_HEIGHT,
-    #              Colour.new(red: 0, blue: 0, green: 0, alpha: 70))
-    #         .draw
+    Rectangle.new(x: 0, y: 0, width: Game::WINDOW_WIDTH, height: Game::WINDOW_HEIGHT,
+                  colour: Colour.new(red: 0, green: 0, blue: 0, alpha: 70))
+             .draw
 
     # Title
     Font.default.draw('Pong', size: 64, position: Vector2[30, 150], colour: Colour::WHITE)
 
     draw_buttons
 
-    #Rectangle.new(x: 5, y: @arrow_y, width: 10, height: 30).draw(colour: WHITE)
+    Rectangle.new(x: 5, y: @arrow_y, width: 10, height: 30, colour: Colour::WHITE).draw
 
     # Version number
     Font.default.draw("V#{Game::VERSION}", size: 20, position: Vector2[750, 580], colour: Colour::WHITE)
