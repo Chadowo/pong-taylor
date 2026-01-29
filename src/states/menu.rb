@@ -3,8 +3,6 @@ require 'entities/court'
 require 'state_manager'
 require 'states/play'
 
-puts 'test'
-
 # Menu state
 class Menu < StateManager::State
   # A button has a label and an action, the action
