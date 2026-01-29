@@ -8,7 +8,7 @@ class AI
 
   def initialize
     @texture = Texture2D.new('./assets/paddle.png')
-    @rectangle = Rectangle.new(x: Game::WINDOW_WIDTH - (25 + @texture.width),
+    @rectangle = Rectangle.new(x: GamePong::WINDOW_WIDTH - (25 + @texture.width),
                                y: 300 - (@texture.height / 2),
                                width: @texture.width,
                                height: @texture.height)

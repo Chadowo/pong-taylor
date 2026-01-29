@@ -6,22 +6,27 @@ require 'states/menu'
 
 require 'version'
 
-# Core game module, everything happens here
-module Game
-  attr_accessor :running
-
-  extend self
+# Core game class, everything happens here
+# NOTE: singleton
+class GamePong
+  attr_accessor :close
 
   WINDOW_WIDTH = 800
   WINDOW_HEIGHT = 600
 
-  @running = true
+  # TODO: Ugly hack to keep track of the created instance of GamePong, used
+  #       by the menu when setting @close for quitting the game.
+  class << self; attr_accessor :instance; end
 
-  def init
+  def initialize
     Window.open(width: WINDOW_WIDTH, height: WINDOW_HEIGHT, title: 'Pong')
     Window.icon = Image.new('assets/icon.png')
 
     Audio.open
+
+    @close = false
+
+    self.class.instance = self
 
     # Get the current monitor frame rate and set our target framerate to match
     Window.target_frame_rate = Monitor.current.refresh_rate
@@ -29,7 +34,7 @@ module Game
     StateManager.set_state(Menu.new)
   end
 
-  def update(dt)
+  def tick(dt)
     # Handle game logic based on current state
     StateManager.update(dt)
 
@@ -40,21 +45,17 @@ module Game
     end
   end
 
-  # Loop our game until it ends
-  def loop
-    # Ends the game if running is false or if the window
-    # should close (user presses the X or hits ESC)
-    update(Window.frame_time) while @running && !Window.close?
+  def start
+    tick(Window.frame_time) until Window.close? || @close
+
+    finalize
   end
 
   # Needed for closing resources used in taylor
-  # NOTE: Don't call this to end the game, instead set Game#running to false
   def finalize
     Window.close
     Audio.close
   end
 end
 
-Game.init
-Game.loop
-Game.finalize
+GamePong.new.start

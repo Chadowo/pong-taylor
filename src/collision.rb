@@ -21,11 +21,11 @@ module Collision
     when :up
       true if box.y <= 0
     when :down
-      true if box.y + box.h >= Game::WINDOW_HEIGHT
+      true if box.y + box.h >= GamePong::WINDOW_HEIGHT
     when :left
       true if box.x <= 0
     when :right
-      true if box.x + box.w >= Game::WINDOW_WIDTH
+      true if box.x + box.w >= GamePong::WINDOW_WIDTH
     else
       raise ArgumentError, "Border #{border} isn't a valid option"
     end

@@ -15,7 +15,7 @@ class Menu < StateManager::State
     @court = Court.new
 
     @buttons = [Button.new('Play', -> { StateManager.set_state(Play.new) }),
-                Button.new('Exit', -> { Game.running = false })]
+                Button.new('Exit', -> { GamePong.instance.close = true })]
     @current_option = 0
 
     # The y of the cube that shows the player's choice
@@ -42,7 +42,7 @@ class Menu < StateManager::State
   def draw
     # Bg
     @court.draw
-    Rectangle.new(x: 0, y: 0, width: Game::WINDOW_WIDTH, height: Game::WINDOW_HEIGHT,
+    Rectangle.new(x: 0, y: 0, width: GamePong::WINDOW_WIDTH, height: GamePong::WINDOW_HEIGHT,
                   colour: Colour.new(red: 0, green: 0, blue: 0, alpha: 70))
              .draw
 
@@ -64,7 +64,7 @@ class Menu < StateManager::State
       margin = 20
       font_height = 38
 
-      Font.default.draw(btn.label, size: font_height, position: Vector2[30, (300 +  offset_y)], colour: Colour::WHITE)
+      Font.default.draw(btn.label, size: font_height, position: Vector2[30, (300 + offset_y)], colour: Colour::WHITE)
 
       offset_y += (font_height + margin)
     end

@@ -40,8 +40,8 @@ class Ball
     # Prevent stucking in the borders
     if @y.negative?
       @y = 0
-    elsif @y + @h > Game::WINDOW_HEIGHT
-      @y = Game::WINDOW_HEIGHT - @h
+    elsif @y + @h > GamePong::WINDOW_HEIGHT
+      @y = GamePong::WINDOW_HEIGHT - @h
     end
 
     collisions

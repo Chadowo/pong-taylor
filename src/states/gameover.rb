@@ -6,7 +6,7 @@ class GameOver < StateManager::State
   end
 
   def update(_dt)
-    return nil unless key_pressed?(KEY_R)
+    return nil unless Key.pressed?(Key::R)
 
     @superstate.on_enter
 
@@ -17,12 +17,12 @@ class GameOver < StateManager::State
     outcome = @superstate.player.score == 10 ? 'You win!' : 'You lose!'
 
     # Top text
-    draw_text('The game has ended!', 200, 200, 38, WHITE)
+    Font.default.draw('The game has ended!', size: 38, position: Vector2[200, 200], colour: Colour::WHITE)
 
     # Medium text
-    draw_text(outcome, 310, 250, 38, WHITE)
+    Font.default.draw(outcome, size: 38, position: Vector2[310, 250], colour: Colour::WHITE)
 
     # Bottom text
-    draw_text('Press R to restart the game', 130, 550, 38, WHITE)
+    Font.default.draw('Press R to restart the game', size: 38, position: Vector2[130, 550], colour: Colour::WHITE)
   end
 end
