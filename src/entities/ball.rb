@@ -9,11 +9,11 @@ class Ball
   SPEED = 300
 
   def initialize
-    @texture = Texture2D.load('./assets/ball.png')
-    @rectangle = Rectangle.new(400 - @texture.width / 2,
-                               300 - @texture.height / 2,
-                               @texture.width,
-                               @texture.height)
+    @texture = Texture2D.new('./assets/ball.png')
+    @rectangle = Rectangle.new(x: 400 - @texture.width / 2,
+                               y: 300 - @texture.height / 2,
+                               width: @texture.width,
+                               height: @texture.height)
 
     @x = @rectangle.x
     @y = @rectangle.y
@@ -40,8 +40,8 @@ class Ball
     # Prevent stucking in the borders
     if @y.negative?
       @y = 0
-    elsif @y + @h > Game::WINDOW_HEIGHT
-      @y = Game::WINDOW_HEIGHT - @h
+    elsif @y + @h > GamePong::WINDOW_HEIGHT
+      @y = GamePong::WINDOW_HEIGHT - @h
     end
 
     collisions

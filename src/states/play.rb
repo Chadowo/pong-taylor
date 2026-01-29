@@ -56,7 +56,7 @@ class Play < StateManager::State
     @rival.track_ball(@ball)
     @ball.update(dt)
 
-    @substate = :pause if key_pressed?(KEY_ENTER)
+    @substate = :pause if Key.pressed?(Key::ENTER)
     @substate = :gameover if @player.score == 10 || @rival.score == 10
   end
 

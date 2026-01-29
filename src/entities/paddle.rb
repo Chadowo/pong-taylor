@@ -10,11 +10,11 @@ class Paddle
   SPEED = 400
 
   def initialize
-    @texture = Texture2D.load('./assets/paddle.png')
-    @rectangle = Rectangle.new(25,
-                               300 - @texture.height / 2,
-                               @texture.width,
-                               @texture.height)
+    @texture = Texture2D.new('./assets/paddle.png')
+    @rectangle = Rectangle.new(x: 25,
+                               y: 300 - @texture.height / 2,
+                               width: @texture.width,
+                               height: @texture.height)
 
     @x = @rectangle.x
     @y = @rectangle.y
@@ -33,9 +33,9 @@ class Paddle
   end
 
   def move(dt)
-    if key_down?(KEY_S) && !collide_border?(:down)
+    if Key.down?(Key::S) && !collide_border?(:down)
       @y += SPEED * dt
-    elsif key_down?(KEY_W) && !collide_border?(:up)
+    elsif Key.down?(Key::W) && !collide_border?(:up)
       @y -= SPEED * dt
     end
   end
@@ -51,6 +51,6 @@ class Paddle
 
   def draw
     @texture.draw(destination: @rectangle)
-    draw_text(@score.to_s, 300, 20, 48, WHITE)
+    Font.default.draw(@score.to_s, size: 48, position: Vector2[300, 20], colour: Colour::WHITE)
   end
 end

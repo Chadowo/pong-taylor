@@ -15,7 +15,7 @@ class Menu < StateManager::State
     @court = Court.new
 
     @buttons = [Button.new('Play', -> { StateManager.set_state(Play.new) }),
-                Button.new('Exit', -> { Game.running = false })]
+                Button.new('Exit', -> { GamePong.instance.close = true })]
     @current_option = 0
 
     # The y of the cube that shows the player's choice
@@ -26,15 +26,15 @@ class Menu < StateManager::State
   def update(dt)
     # This handles our game's menu control, since our buttons are drawed
     # from top to bottom the 0 index is the topmost button
-    if key_pressed?(KEY_UP) && @current_option.positive?
+    if Key.pressed?(Key::UP) && @current_option.positive?
       @current_option -= 1
       @arrow_y -= 58
-    elsif key_pressed?(KEY_DOWN) && @current_option < (@buttons.length - 1)
+    elsif Key.pressed?(Key::DOWN) && @current_option < (@buttons.length - 1)
       @current_option += 1
       @arrow_y += 58
     end
 
-    return nil unless key_pressed?(KEY_ENTER)
+    return nil unless Key.pressed?(Key::ENTER)
 
     @buttons[@current_option].action.call
   end
@@ -42,18 +42,19 @@ class Menu < StateManager::State
   def draw
     # Bg
     @court.draw
-    Rectangle.new(0, 0, Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT)
-             .draw(colour: Colour.new(0, 0, 0, 70))
+    Rectangle.new(x: 0, y: 0, width: GamePong::WINDOW_WIDTH, height: GamePong::WINDOW_HEIGHT,
+                  colour: Colour.new(red: 0, green: 0, blue: 0, alpha: 70))
+             .draw
 
     # Title
-    draw_text('Pong', 30, 150, 64, WHITE)
+    Font.default.draw('Pong', size: 64, position: Vector2[30, 150], colour: Colour::WHITE)
 
     draw_buttons
 
-    Rectangle.new(5, @arrow_y, 10, 30).draw(colour: WHITE)
+    Rectangle.new(x: 5, y: @arrow_y, width: 10, height: 30, colour: Colour::WHITE).draw
 
     # Version number
-    draw_text("V#{Game::VERSION}", 750, 580, 20, WHITE)
+    Font.default.draw("V#{Game::VERSION}", size: 20, position: Vector2[750, 580], colour: Colour::WHITE)
   end
 
   def draw_buttons
@@ -63,7 +64,7 @@ class Menu < StateManager::State
       margin = 20
       font_height = 38
 
-      draw_text(btn.label, 30, (300 + offset_y), font_height, WHITE)
+      Font.default.draw(btn.label, size: font_height, position: Vector2[30, (300 + offset_y)], colour: Colour::WHITE)
 
       offset_y += (font_height + margin)
     end

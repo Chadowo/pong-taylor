@@ -10,15 +10,15 @@ class Pause < StateManager::State
   end
 
   def update(dt)
-    if key_pressed?(KEY_UP) && @current_option.positive?
+    if Key.pressed?(Key::UP) && @current_option.positive?
       @current_option -= 1
       @arrow_y = 250
-    elsif key_pressed?(KEY_DOWN) && @current_option < (1)
+    elsif Key.pressed?(Key::DOWN) && @current_option < (1)
       @current_option += 1
       @arrow_y = 300
     end
 
-    return nil unless key_pressed?(KEY_ENTER)
+    return nil unless Key.pressed?(Key::ENTER)
 
     if @current_option.zero?
       @superstate.substate = :playing
@@ -30,17 +30,18 @@ class Pause < StateManager::State
   def draw
     # Transparent rectangle covering the game window to darken
     # the screen a little
-    Rectangle.new(0, 0, Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT)
-             .draw(colour: Colour.new(0, 0, 0, 100))
+    Rectangle.new(x: 0, y: 0, width: GamePong::WINDOW_WIDTH, height: GamePong::WINDOW_HEIGHT,
+                  colour: Colour.new(red: 0, green: 0, blue: 0, alpha: 100))
+             .draw
 
-    draw_text('-- PAUSE --', 255, 150, 48, WHITE)
-    Rectangle.new(295, @arrow_y, 10, 30).draw(colour: WHITE)
+    Font.default.draw('-- PAUSE --', size: 48, position: Vector2[255, 150], colour: Colour::WHITE)
+    Rectangle.new(x: 295, y: @arrow_y, width: 10, height: 30, colour: Colour::WHITE).draw
 
     draw_buttons
   end
 
   def draw_buttons
-    draw_text('Resume', 320, 250, 38, WHITE)
-    draw_text('Menu', 320, 300, 38, WHITE)
+    Font.default.draw('Resume', size: 38, position: Vector2[320, 250], colour: Colour::WHITE)
+    Font.default.draw('Menu', size: 38, position: Vector2[320, 300], colour: Colour::WHITE)
   end
 end
